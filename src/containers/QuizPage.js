@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux';
+import QuestionsList from '../components/QuestionsList';
 import {
   getQuiz
 } from '../actions/quizActions';
@@ -17,7 +18,11 @@ export class QuizPage extends Component {
     const { questions } = this.props;
     return (
       <div className="App">
-          Hello World
+          Quiz App
+          {questions ? 
+           <div>
+               <QuestionsList questions={questions} />
+           </div> : 'loading ....'}
       </div>
     );
   }
