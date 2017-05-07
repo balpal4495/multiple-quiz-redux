@@ -1,21 +1,14 @@
-export const questions = () => {
-  const localEndpoint = `/data/questions.json`;
-  return fetch(localEndpoint)
-    .then(response => {
-      return response.json()
-    })
-    .then(json => {
-      return json;
-    });
+import * as Questions from '../../data/questions';
+import * as Answers from '../../data/answers';
+import * as _ from 'lodash';
+
+export const questions = (number) => {
+  if (number > Questions.default.length) {
+      return Questions.default;
+  }
+  return _.sampleSize(Questions.default, number);
 };
 
 export const answers = () => {
-  const localEndpoint = `/api/answers.json`;
-  return fetch(localEndpoint)
-    .then(response => {
-      return response.json()
-    })
-    .then(json => {
-      return json;
-    });
+    return Answers.default
 };

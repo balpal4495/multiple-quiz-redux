@@ -1,6 +1,6 @@
 import { fork } from 'redux-saga/effects';
-import getQuiz from './watchers';
+import getQuizWatcher from './watchers';
 
 export default function* startForman() {
-  yield fork(getQuiz);
+  yield fork(getQuizWatcher);
 }

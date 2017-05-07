@@ -1,4 +1,4 @@
-{"questions": [
+module.exports = [
     {"id": 1, "question": "Which logo on a flag identifies a ship's crew as pirates?", "answerOptions":[
         {"value": "A", "body": "A: Skull and Crossbones"},
         {"value": "B", "body": "B: Lion"},
@@ -60,4 +60,3 @@
         {"value": "D", "body": "D: The Indian National Congress"}
     ]}
   ]
-}
