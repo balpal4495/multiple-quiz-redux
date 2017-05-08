@@ -3,7 +3,9 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux';
 import QuestionsList from '../components/QuestionsList';
 import {
-  getQuiz
+  getQuiz,
+  submitQuestion,
+  updateQuestion
 } from '../actions/quizActions';
 import RaisedButton from 'material-ui/RaisedButton';
 
@@ -17,20 +19,31 @@ export class QuizPage extends Component {
   }
 
   handleSelectAnswer(question, answer) {
-    // this.props.dispatch(selectImageAction(selectedImage));
-    console.log('answerObjectsss::', question)
-    console.log('answerObjsdsds::', answer)
+    const { quiz } = this.props;
+    const payload = {
+      questionId: question.id,
+      answer: answer.value
+    };
+    const questionCheck = quiz.filter(( q ) => {
+      return q.questionId === question.id;
+    });
+    
+    if(questionCheck.length > 0) {
+      this.props.dispatch(updateQuestion(payload))
+    } else {
+      this.props.dispatch(submitQuestion(payload));
+    }
   }
+
   render() {
-    console.log('props::', this.props)
     const { questions } = this.props;
     return (
       <div className="App">
-          Quiz App
-          <RaisedButton label="Yay Buttons" />
           {questions ? 
            <div>
+             Quiz App
                <QuestionsList questions={questions} onHandleSelectAnswer={this.handleSelectAnswer} />
+               <RaisedButton label="Submit" />         
            </div> : 'loading ....'}
       </div>
     );
@@ -42,7 +55,8 @@ QuizPage.propTypes = {
   questions: PropTypes.array,
   dispatch: PropTypes.func.isRequired
 };
-const mapStateToProps = ({ questions, answers }) => ({
+const mapStateToProps = ({ questions, answers, quiz }) => ({
+  quiz: quiz,
   questions: questions[0],
 //   answers: answers[0]
 });
