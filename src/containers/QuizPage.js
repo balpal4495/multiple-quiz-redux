@@ -5,13 +5,21 @@ import QuestionsList from '../components/QuestionsList';
 import {
   getQuiz
 } from '../actions/quizActions';
+import RaisedButton from 'material-ui/RaisedButton';
 
 export class QuizPage extends Component {
   constructor() {
-    super();  
+    super();
+     this.handleSelectAnswer = this.handleSelectAnswer.bind(this);  
   }
   componentDidMount() {
     this.props.dispatch(getQuiz(5));
+  }
+
+  handleSelectAnswer(question, answer) {
+    // this.props.dispatch(selectImageAction(selectedImage));
+    console.log('answerObjectsss::', question)
+    console.log('answerObjsdsds::', answer)
   }
   render() {
     console.log('props::', this.props)
@@ -19,9 +27,10 @@ export class QuizPage extends Component {
     return (
       <div className="App">
           Quiz App
+          <RaisedButton label="Yay Buttons" />
           {questions ? 
            <div>
-               <QuestionsList questions={questions} />
+               <QuestionsList questions={questions} onHandleSelectAnswer={this.handleSelectAnswer} />
            </div> : 'loading ....'}
       </div>
     );
