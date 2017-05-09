@@ -8,7 +8,7 @@ const ResultsPage = ({ questions, score, answers }) => {
       })
       return (
           <div className="dialog-results">
-            {questionObject[0].question}
+            <span className="question">{questionObject[0].question} </span>
             <ul className="dialog-results-list">
             {questionObject[0].answerOptions.map((option) => {
                 return <li key={option.body}>{option.body}</li>

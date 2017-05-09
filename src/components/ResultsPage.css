@@ -10,3 +10,11 @@
 .incorrect{
     color: #E53935;
 }
+
+.question{
+    font-weight: bold;
+}
+
+.dialog-results{
+    padding-top: 1rem;
+}
