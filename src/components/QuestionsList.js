@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {RadioButton, RadioButtonGroup} from 'material-ui/RadioButton';
+import './QuestionList.css';
 
 class QuestionsList extends Component {
   render() {
@@ -10,7 +11,7 @@ class QuestionsList extends Component {
         {questions.map(question => (
             <div key={question.id}>
                <div>
-                  <span>{question.question}</span>
+                  <p className="question">{question.question}</p>
                   <RadioButtonGroup name={question.question} defaultSelected="not_light" >
                       {question.answerOptions.map(option => (
                           <RadioButton
