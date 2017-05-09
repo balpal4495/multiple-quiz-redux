@@ -20,7 +20,6 @@ export class QuizPage extends Component {
   constructor() {
     super();
      this.handleSelectAnswer = this.handleSelectAnswer.bind(this);  
-     this.handleSubmit = this.handleSubmit.bind(this);
      this.handleOpen = this.handleOpen.bind(this);
      this.handleClose = this.handleClose.bind(this);
      this.state = {
@@ -28,6 +27,9 @@ export class QuizPage extends Component {
     };
   }
   componentDidMount() {
+    // this controls how many questions can be displayed
+    // this has a dependency on the data and answers specified in the ./data folder
+    // you cannot generate more questions if they do not exist in the data source
     this.props.dispatch(getQuiz(5));
   }
 
@@ -43,10 +45,6 @@ export class QuizPage extends Component {
     } else {
       this.props.dispatch(submitQuestion(payload));
     }
-  }
-
-  handleSubmit() {
-    console.log('blah');
   }
 
   handleOpen = () => {
