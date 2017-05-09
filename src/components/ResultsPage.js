@@ -1,20 +1,15 @@
-import React, { PropTypes } from 'react';
-import { Link } from 'react-router';
-import * as _ from 'lodash';
+import React from 'react';
+import './ResultsPage.css';
 
 const ResultsPage = ({ questions, score, answers }) => {
-  const getQuestionByID = (id) => {
-      return questions.filter((q) => {
+  const renderQuestion = (id) => {
+      const questionObject = questions.filter((q) => {
         return q.id === id
       })
-  }
-  const renderQuestion = (id) => {
-      const questionObject = getQuestionByID(id)
-      console.log('questionObject::', questionObject)
       return (
-          <div>
+          <div className="dialog-results">
             {questionObject[0].question}
-            <ul>
+            <ul className="dialog-results-list">
             {questionObject[0].answerOptions.map((option) => {
                 return <li key={option.body}>{option.body}</li>
             })}
@@ -26,25 +21,37 @@ const ResultsPage = ({ questions, score, answers }) => {
       const resultObject = score.filter((r) => {
           return r.questionId === id;
       })
-
-      console.log('resultObject::', resultObject)
-      return (<p>you answered with {resultObject[0].submittedAnswer} correct answer is {resultObject[0].correctAnswer}</p>)
+      let textString;
+      if(resultObject[0].isCorrect) {
+          textString = <p><span className="correct">Correct! </span> 
+                       you answered with {resultObject[0].submittedAnswer}</p>
+      } else {
+          textString = <p><span className="incorrect">Incorrect! </span> 
+                           you answered with {resultObject[0].submittedAnswer} correct answer 
+                           is {resultObject[0].correctAnswer} </p>
+      }
+      return textString
   }
-  console.log('questions::s', questions)
-  console.log('score::s', score)
-  console.log('answers::s', answers)
+
+  const renderScore = () => {
+      const total = score.filter((s) => {
+          return s.isCorrect === true;
+      })
+      return <p>You scored {total.length} out of {questions.length} </p>
+  }
+
   return (
     <div className="results">
         {score.map(a => (
             <div key={a.questionId}>
                <div>
-                  {console.log('a::', a)}
                   {renderQuestion(a.questionId)}
                   {renderResult(a.questionId)}
                   <br/>
               </div>
             </div>
         ))}
+        {renderScore()}
     </div>
   )
 }

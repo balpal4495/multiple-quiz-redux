@@ -64,7 +64,6 @@ export class QuizPage extends Component {
       <div className="App">
           {questions ? 
            <div>
-             Quiz App
                <QuestionsList questions={questions} onHandleSelectAnswer={this.handleSelectAnswer} />
                <RaisedButton label="Submit" onTouchTap={this.handleOpen} />
                <Dialog

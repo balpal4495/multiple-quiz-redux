@@ -1,0 +1,12 @@
+.dialog-results-list{
+  list-style: none;
+  padding-left: 0rem;
+}
+
+.correct{
+  color:#8BC34A;
+}
+
+.incorrect{
+    color: #E53935;
+}

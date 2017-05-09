@@ -6,7 +6,7 @@ class QuestionsList extends Component {
     const { questions, onHandleSelectAnswer } = this.props
     return (
       <div className="questionsList">
-        <h2>Questions</h2>
+        <h3>Quiz App</h3>
         {questions.map(question => (
             <div key={question.id}>
                <div>
